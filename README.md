@@ -1,6 +1,10 @@
 # Proyecto Web - React + Firebase
 
-![Frontend](./doc/firebase.svg)
+![Firebase Architecture](./doc/firebase.svg)
+
+## Documentación
+
+Puedes encontrar la documentación de este proyecto en [este enlace](https://taller-threepoints-docs.netlify.app/docs/firebase/intro).
 
 ## Prototipo
 
@@ -11,30 +15,3 @@ Además, como se enseñará en el propio proyecto, podemos ver el prototipo fina
 ## Setup
 
 Para poner en marcha el proyecto tenemos que seguir los pasos detallados en el [CONTRIBUTING.md](CONTRIBUTING.MD)
-
-## Tecnologías
-
-Este proyecto cuenta con las siguientes tecnologías, que se encuentran dentro del prototipo.
-
-### UI
-
-* [React](https://reactjs.org/docs/hello-world.html)
-* [Create React App](https://create-react-app.dev)
-* [Styled Components](https://styled-components.com)
-* [Internationalization](https://react.i18next.com)
-* [Lottie](https://lottiefiles.com/blog/working-with-lottie/how-to-use-lottie-in-react-app)
-* [React Router](https://reactrouter.com/web/guides/quick-start)
-* [Typescript](https://www.typescriptlang.org)
-* [Swagger](https://swagger.io)
-* [Figma](https://www.figma.com)
-* [JWT](https://jwt.io)
-* [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-* [DotEnv](https://github.com/motdotla/dotenv)
-
-### Backend
-
-* [Firebase](https://firebase.google.com)
-
-### BBDD
-
-* [Cloud Firestore](https://firebase.google.com/docs/firestore)
