@@ -16,11 +16,11 @@ Antes de ejecutar la apliación, es recomendable revisar las variables de entorn
 
 ```.env
 ********* ui/.env *********
-REACT_APP_LOCALE=es-ES
+VITE_LOCALE=es-ES
 FIREBASE_API=uiaASDFADSF8909a8sd0f9a8fds
 ```
 
-* `REACT_APP_LOCALE` configura el idioma local del proyecto.
+* `VITE_LOCALE` configura el idioma local del proyecto.
 * `FIREBASE_API` parte más sensible del secreto de configuración de firebase
 
 ### Instalación dependencias

@@ -3,9 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./i18n";
 import App from "./components/App";
 import { AppProvider } from "./context/AppContext/AppContext";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
+import "./main.css";
 import { HelmetProvider } from "react-helmet-async";
+import { FirebaseAppProvider } from "reactfire";
+import { firebaseConfig } from "./utils/firebase";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,14 +15,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <HelmetProvider>
-        <AppProvider>
+      <AppProvider>
+        <FirebaseAppProvider firebaseConfig={firebaseConfig}>
           <App />
-        </AppProvider>
+        </FirebaseAppProvider>
+      </AppProvider>
     </HelmetProvider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

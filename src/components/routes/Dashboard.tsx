@@ -7,7 +7,7 @@ import AboutMeCard from "../cards/AboutMeCard";
 import ProjectCard from "../cards/ProjectCard";
 import { themes } from "../../styles/ColorStyles";
 import { MediumText } from "../../styles/TextStyles";
-
+/* eslint-disable import/no-extraneous-dependencies */
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
 import {
   collection,
@@ -47,15 +47,18 @@ const Dashboard = () => {
       <ContentWrapper>
         <ResponseWrapper>
           <AboutMeWrapper>
-            {statusAboutme === "error" && <ErrorMsg>{t("dashboard.error")}</ErrorMsg>}
-            {statusAboutme === "success" && (
+            {statusAboutme === "error" && (
+              <ErrorMsg>{t("dashboard.error")}</ErrorMsg>
+            )}
+            {statusAboutme === "success" &&
               dataAboutMe?.map((aboutMe, index) => (
                 <AboutMeCard aboutMe={aboutMe as AboutMe} key={index} />
-              ))
-            )}
+              ))}
           </AboutMeWrapper>
           <ProjectWrapper>
-            {statusProjects === "error" && <ErrorMsg>{t("dashboard.error")}</ErrorMsg>}
+            {statusProjects === "error" && (
+              <ErrorMsg>{t("dashboard.error")}</ErrorMsg>
+            )}
             {statusAboutme === "success" &&
               dataProjects?.map((project, index) => (
                 <ProjectCard project={project as Project} key={index} />
