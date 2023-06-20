@@ -19,7 +19,7 @@
   "plugins": ["react", "react-hooks", "@typescript-eslint", "import"],
   "env": {
     "browser": true,
-    "es6": true,
+    "es6": true
   },
   "globals": {
     "Atomics": "readonly",

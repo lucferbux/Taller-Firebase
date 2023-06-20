@@ -1,71 +1,49 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
-import { AboutMe } from "../../model/aboutme";
-import { Project } from "../../model/project";
-import AboutMeCard from "../cards/AboutMeCard";
-import ProjectCard from "../cards/ProjectCard";
-import { themes } from "../../styles/ColorStyles";
-import { MediumText } from "../../styles/TextStyles";
-/* eslint-disable import/no-extraneous-dependencies */
-import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import {
-  collection,
-  CollectionReference,
-  DocumentData,
-} from "@firebase/firestore";
-
-interface AboutMeResponse {
-  status: string;
-  data: DocumentData[];
-}
-
-interface ProjectResponse {
-  status: string;
-  data: DocumentData[];
-}
+import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import AboutMeCard from '../cards/AboutMeCard';
+import ProjectCard from '../cards/ProjectCard';
+import { themes } from '../../styles/ColorStyles';
+import { MediumText } from '../../styles/TextStyles';
+import Loader from '../elements/Loader';
+import useFetchDataFirestore from '../../hooks/useFetchDataFirestore';
 
 const Dashboard = () => {
   const { t } = useTranslation();
 
-  const aboutMeCollectionRef: CollectionReference<DocumentData> = collection(
-    useFirestore(),
-    "aboutme"
-  );
-  const projectsCollectionRef: CollectionReference<DocumentData> = collection(
-    useFirestore(),
-    "project"
-  );
+  const { data, isLoading, error } = useFetchDataFirestore();
 
-  const { status: statusAboutme, data: dataAboutMe }: AboutMeResponse =
-    useFirestoreCollectionData(aboutMeCollectionRef);
-  const { status: statusProjects, data: dataProjects }: ProjectResponse =
-    useFirestoreCollectionData(projectsCollectionRef);
+  if (isLoading) {
+    return <Loader message="Loading data" />;
+  }
+
+  if (error) {
+    return (
+      <Wrapper>
+        <ContentWrapper>
+          <ErrorMsg>{t('dashboard.error')}</ErrorMsg>
+        </ContentWrapper>
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper>
       <ContentWrapper>
-        <ResponseWrapper>
-          <AboutMeWrapper>
-            {statusAboutme === "error" && (
-              <ErrorMsg>{t("dashboard.error")}</ErrorMsg>
-            )}
-            {statusAboutme === "success" &&
-              dataAboutMe?.map((aboutMe, index) => (
-                <AboutMeCard aboutMe={aboutMe as AboutMe} key={index} />
-              ))}
-          </AboutMeWrapper>
-          <ProjectWrapper>
-            {statusProjects === "error" && (
-              <ErrorMsg>{t("dashboard.error")}</ErrorMsg>
-            )}
-            {statusAboutme === "success" &&
-              dataProjects?.map((project, index) => (
-                <ProjectCard project={project as Project} key={index} />
-              ))}
-            {}
-          </ProjectWrapper>
-        </ResponseWrapper>
+        {data && (
+          <ResponseWrapper>
+            <AboutMeWrapper>
+              {data?.aboutMe?.[0] && <AboutMeCard aboutMe={data?.aboutMe[0]} />}
+            </AboutMeWrapper>
+            <ProjectWrapper>
+              {data?.projects
+                ?.sort((a, b) => b.timestamp - a.timestamp)
+                .map((project, index) => (
+                  <ProjectCard project={project} key={index} />
+                ))}
+            </ProjectWrapper>
+          </ResponseWrapper>
+        )}
       </ContentWrapper>
     </Wrapper>
   );

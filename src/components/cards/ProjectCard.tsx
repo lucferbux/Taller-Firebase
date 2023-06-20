@@ -1,14 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { Project } from "../../model/project";
-import { themes } from "../../styles/ColorStyles";
-import {
-  H3,
-  DescriptionCard,
-  SmallText,
-  SmallText2,
-} from "../../styles/TextStyles";
-import codeIcon from "./code.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { Project } from '../../model/project';
+import { themes } from '../../styles/ColorStyles';
+import { H3, DescriptionCard, SmallText, SmallText2 } from '../../styles/TextStyles';
+import codeIcon from './code.svg';
 
 interface ProjectCardProps {
   project: Project;
@@ -27,7 +22,7 @@ const ProjectCard = (props: ProjectCardProps) => {
           </CardVersion>
         </CardInfo>
         <CardCaption data-testid="caption">
-          {props.captionText ? props.captionText : ""}
+          {props.captionText ? props.captionText : ''}
         </CardCaption>
         <CardTitle>{project.title}</CardTitle>
         <CardDescription>{project.description}</CardDescription>
